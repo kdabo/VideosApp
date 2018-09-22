@@ -1,0 +1,24 @@
+import React from 'react';
+import VideoListItem from './video_list_item';
+
+
+//props object is argument is functional component
+const VideoList = (props) => {
+  const videoItems = props.videos.map((video, index) => {
+    return (
+      <VideoListItem
+        onVideoSelect={props.onVideoSelect}
+        video={video}
+        key={index}
+      />
+    );
+  });
+
+  return (
+    <ul className="col-md-4 list-group">
+      {videoItems}
+    </ul>
+  );
+};
+
+export default VideoList;

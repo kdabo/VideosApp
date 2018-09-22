@@ -31,12 +31,17 @@ class SearchBar extends Component {
       // and when it re renders the value of the input is set to new value of this.state.term
       // when user type something they didn't change the input value, they triggered an event and because we updated the state pf the event that cause the input value to change
       return (
-          <div>
+          <div className="search-bar">
            <input
                 value={this.state.term}
-                onChange={event => this.setState({ term: event.target.value }) } />
+                onChange={event => this.onInputChnage(event.target.value)} />
           </div>
     );
+  }
+
+  onInputChnage(term) {
+      this.setState({term});
+      this.props.onSearchTermChange(term);
   }
 }
 
