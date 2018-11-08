@@ -1,8 +1,6 @@
 import React from 'react';
 import VideoListItem from './video_list_item';
 
-
-//props object is argument is functional component
 const VideoList = (props) => {
   const videoItems = props.videos.map((video, index) => {
     return (

@@ -1,45 +1,48 @@
 import React, { Component } from 'react';
 
-//functional component because it literally is a function
-// always start with the simple one,  but than upgrade if you need to handle more states
+// functional component is a function
+// always starting with the simple one, but than upgrading if more states need to be handled
+// Example:
 // const SearchBar = () => {
 //     return <input/>;
 // };
 
-//upgrade to class based component (JS object) - define new class and give it access to all of the functionality that react.component has
-//every defined React class must have render method and return .jsx
+// upgrading to class based component (JS object) -> define new class and give it access to all of the functionality that react.component has
+// every defined React class must have render method and return .jsx
 
-// declare event handler whenever the event occurs, pass the handler to the element you wan to monitor for events
 class SearchBar extends Component {
-    //state is JS object used to record and react to state change
-
-    // initialise state object inside component'' constructor method
-    // constructor function is first and only component that is being called automatically whenever new instance of the class is created
-    constructor(props) {
-        // Component itself has it's constructor function - so when we define a method that is already defined in Component on the parent class
-        // which is Component we can call the parent method by calling super
-        super(props);
-        //initialise state by creating a new object and assign it to this.state
-        // object will contain properties that we want to record on the state which is term in this case
-        // only inside a constructor function is allowed to change state like this, everywhere else we use this.setState
-        this.state = {term: 'Starting Value'};
-    }
+    // constructor function is the first and only component that is being called automatically whenever new instance of the class is created
+    // class component itself has it's constructor function
+    // which is the super function parent method
+  constructor(props) {
+        // in class component props are available anywhere within the class as this.props
+     super(props);
+        // state is JS object used to record and react to state change
+        // initialise state object inside component's constructor method by creating a new object and assign it to this.state
+        // object will contain properties that are record on the state which is term property in this case
+        // only inside a constructor function is allowed to change state by assigning a value, everywhere else is used this.setState
+     this.state = {term: 'Starting Value'};
+  }
 
   render() {
-        //change the state by calling this.setState and passing new object
-       // input is controlled component here because it has its value set by state so it's value change whenever the state changes because setState causes the component to re render
-      // and when it re renders the value of the input is set to new value of this.state.term
-      // when user type something they didn't change the input value, they triggered an event and because we updated the state pf the event that cause the input value to change
-      return (
-          <div className="search-bar">
-           <input
-                value={this.state.term}
-                onChange={event => this.onInputChnage(event.target.value)} />
-          </div>
+    // change the state by calling this.setState and passing new object
+    // input is controlled component in this case because it has its value set by state
+    // it means it's value would change whenever the state changes because setState causes the component to rerender
+    // when component rerenders, the value of the input is set to new value of this.state.term
+    // when user types something, user doesn't change the input value, rather user triggers an event that cause the input value to change
+
+  return (
+      <div className="search-bar">
+        <input
+          value={this.state.term}
+          onChange={event => this.onInputChange(event.target.value) }
+        />
+      </div>
     );
   }
 
-  onInputChnage(term) {
+  // declare event handler whenever the event occurs, pass the handler to the element you wan to monitor for events
+    onInputChange(term) {
       this.setState({term});
       this.props.onSearchTermChange(term);
   }

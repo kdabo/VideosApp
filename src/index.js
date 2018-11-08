@@ -1,16 +1,20 @@
 import _ from 'lodash';
-import React, {Component} from 'react'; //create Component
-import ReactDOM from 'react-dom'; // push it to DOM
+
+// importing React library to create Component
+// importing ReactDOM library to push Component to the DOM
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+
+//the actual reference to the file where the component is imported from - relative path
+import SearchBar from './components/search_bar';
 import YTSearch from 'youtube-api-search';
-import SearchBar from './components/search_bar'; //must give the actual reference to the file we want to import the component from - relative path
 import VideoList from './components/video_list';
 import VideoDetail from './components/video_detail';
 
-const API_KEY = '';
-
+// YouTube API key
+const API_KEY = 'AIzaSyB_X342tBV8IRkFls8Jx3q1brIzt1mbVQI';
 
 class App extends Component {
-    // in class component props are available anywhere within the class as this.props
     constructor(props) {
         super(props);
 
@@ -19,7 +23,7 @@ class App extends Component {
           selectedVideo: null
         };
 
-        this.videoSearch('surfboards');
+        this.videoSearch('');
     }
 
     videoSearch(term) {
@@ -43,6 +47,6 @@ class App extends Component {
             videos={this.state.videos}/>
         </div>);
     }
-};
+}
 
 ReactDOM.render(<App/>, document.querySelector('.container'));
